@@ -406,13 +406,13 @@ var resizePizzas = function(size) {
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.querySelector("#pizzaSize").innerHTML = "Small";
+        document.getElementById("pizzaSize").innerHTML = "Small";
         return;
       case "2":
-        document.querySelector("#pizzaSize").innerHTML = "Medium";
+        document.getElementById("pizzaSize").innerHTML = "Medium";
         return;
       case "3":
-        document.querySelector("#pizzaSize").innerHTML = "Large";
+        document.getElementById("pizzaSize").innerHTML = "Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
@@ -424,7 +424,7 @@ var resizePizzas = function(size) {
   // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
   function determineDx (elem, size) {
     var oldwidth = elem.offsetWidth;
-    var windowwidth = document.querySelector("#randomPizzas").offsetWidth;
+    var windowwidth = document.getElementById("randomPizzas").offsetWidth;
     var oldsize = oldwidth / windowwidth;
 
     // TODO: change to 3 sizes? no more xl?
@@ -450,8 +450,8 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-      //put querySelector in variable to avoid querying DOM everytime
-      var pizzaContainer = document.querySelectorAll(".randomPizzaContainer");
+      //put getElementsByClassName in variable to avoid querying DOM everytime
+      var pizzaContainer = document.getElementsByClassName("randomPizzaContainer");
       /*Identified this line as a huge performance penalty because it was
        queried the DOM in a loop everytime the Pizza size is changed
         */
@@ -475,9 +475,8 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
-var randomPizzasElement = document.getElementById("randomPizzas");
+var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = randomPizzasElement;
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -513,7 +512,7 @@ function updatePositions() {
       */
   var scroll = document.body.scrollTop;
   //Get elements by class name did now work in this case
-  var items = document.querySelectorAll('.mover');
+  var items = document.getElementsByClassName('mover');
   var lenItems = items.length;
   var phaseBase = scroll / 1250;
   var phase;
