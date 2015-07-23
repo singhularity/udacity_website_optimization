@@ -451,7 +451,7 @@ var resizePizzas = function(size) {
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
       //put querySelector in variable to avoid querying DOM everytime
-      var pizzaContainer = document.getElementsByClassName(".randomPizzaContainer");
+      var pizzaContainer = document.querySelectorAll(".randomPizzaContainer");
       /*Identified this line as a huge performance penalty because it was
        queried the DOM in a loop everytime the Pizza size is changed
         */
@@ -512,7 +512,8 @@ function updatePositions() {
      the Frame rate significantly.
       */
   var scroll = document.body.scrollTop;
-  var items = document.getElementsByClassName('.mover');
+  //Get elements by class name did now work in this case
+  var items = document.querySelectorAll('.mover');
   var lenItems = items.length;
   var phaseBase = scroll / 1250;
   var phase;
@@ -542,9 +543,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var cols = window.screen.availWidth/160;
   var totalPizzas = cols * (window.screen.availHeight/160);
   var s = 256;
-  var elem = document.createElement('img');
+  var elem;
   var movingPizzasElement = document.getElementById("movingPizzas1");
   for (var i = 0; i < totalPizzas; i++) {
+    elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
