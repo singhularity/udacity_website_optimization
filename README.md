@@ -16,7 +16,12 @@
             200 pizzas. This speeds up the initial page load since we don't create 200 pizzas everytime.
 6. Added the bootstrap "img-responsive" class to project-2048 and project-mobile files to make images responsive on 
    mobile devices.
+7. Removed all the "querySelector" instances with "getElementById" and "getElementByClassName"
+8. Made other smaller optimizations for getting length of array and variable declarations.
 
+
+To Run the project
+Open the index.html file
 
 
 ## Website Performance Optimization portfolio project
