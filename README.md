@@ -1,3 +1,24 @@
+## STEPS FOLLOWED FOR OPTIMIZATION
+1. Removed render blocking Javascript and CSS files from all the pages to make sure that the 
+ delays in the critical rendering path and hence the page rendering are eliminated.
+2. Moved all the javascript file loading towards the end of the page to speed up page loads.
+3. Reduced size of images so they don't need to be scaled down and hence load faster.
+4. Minified CSS and Javascript files to reduce size of downloads when pages load.
+5. In main.js for pizza.html I added the following optimizations
+  5.1 In the updatePositions function I moved the querying for scrolling position through scrollTop
+      outside the loop which was impacting the Frame rate significantly since the DOM would be queried 
+      multiple times.
+  5.2 Made a similar optimization in "changePizzaSizes" where the DOM was being queried in a loop
+      to determine the offsetWidth. Also saved the query for "randomPizzaContainer" in a variable.
+  5.3 Based on the suggestion from my reviewer I also changed the calculation of number of pizzas to be dynamic.
+      5.3.1 I calculate the number of columns from the screen resolution and also number of rows of pizza from the 
+            screen height. I use the two values to calculate the "totalPizzas" value instead of defaulting it to
+            200 pizzas. This speeds up the initial page load since we don't create 200 pizzas everytime.
+6. Added the bootstrap "img-responsive" class to project-2048 and project-mobile files to make images responsive on 
+   mobile devices.
+
+
+
 ## Website Performance Optimization portfolio project
 
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
