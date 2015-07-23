@@ -450,7 +450,11 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
+      //put querySelector in variable to avoid querying DOM everytime
       var pizzaContainer = document.querySelectorAll(".randomPizzaContainer");
+      /*Identified this line as a huge performance penalty because it was
+       queried the DOM in a loop everytime the Pizza size is changed
+        */
       var dx = determineDx(pizzaContainer[0], size);
       var newwidth = (pizzaContainer[0].offsetWidth + dx) + 'px';
     for (var i = 0; i < pizzaContainer.length; i++) {
@@ -502,6 +506,9 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
+    /* Move querying scrollTop outside the loop which was impacting
+     the Frame rate significantly.
+      */
   var scroll = document.body.scrollTop;
   var items = document.querySelectorAll('.mover');
   for (var i = 0; i < items.length; i++) {
